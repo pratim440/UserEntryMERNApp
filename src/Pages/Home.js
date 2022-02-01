@@ -13,17 +13,15 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(async () => {
-    console.log(Cookies.get("accessToken"));
-    await axios
-      .post(
-        `${api}/admin/checkAdmin`,
-        { accessToken: Cookies.get("accessToken") },
-        config
-      )
-      .then((res) => {
-        console.log("user authenticated");
-      })
-      .catch((err) => navigate("/login"));
+    let accessToken = Cookies.get("accessToken");
+    if (accessToken) {
+      await axios
+        .post(`${api}/admin/checkAdmin`, { accessToken }, config)
+        .then((res) => {
+          console.log("user authenticated");
+        })
+        .catch((err) => navigate("/login"));
+    } else navigate("/login");
   }, []);
   useEffect(async () => {
     await axios
