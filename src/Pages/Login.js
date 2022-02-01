@@ -4,6 +4,7 @@ import { api, config } from "./../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import Cookies from "js-cookie";
 
 function Login() {
   const {
@@ -12,19 +13,21 @@ function Login() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  // useEffect(async () => {
-  //   await axios
-  //     .get(`${api}/admin/checkAdmin`, config)
-  //     .then((res) => {
-  //       navigate("/");
-  //     })
-  //     .catch((err) => navigate("/login"));
-  // }, []);
+  useEffect(async () => {
+    await axios
+      .get(`${api}/admin/checkAdmin`, config)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => navigate("/login"));
+  }, []);
 
   const onSubmit = async (data) => {
     await axios
       .post(`${api}/admin/loginAdmin`, data, config)
       .then((res) => {
+        // console.log(res);
+        Cookies.set("accessToken", res.data.accessToken);
         toast.success("Logged in successfully!");
         navigate("/");
       })
