@@ -42,7 +42,7 @@ router.post("/loginAdmin", async (req, res) => {
     res.status(400).send("Email does not exist!");
   }
 });
-router.get("/checkAdmin", validateToken, (req, res) => {
+router.post("/checkAdmin", validateToken, (req, res) => {
   res.status(200).json("User Authenticated");
 });
 
