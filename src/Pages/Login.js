@@ -27,7 +27,7 @@ function Login() {
       .post(`${api}/admin/loginAdmin`, data, config)
       .then((res) => {
         // console.log(res);
-        Cookies.set("accessToken", res.data.accessToken);
+        Cookies.set("from client", res.data.accessToken);
         toast.success("Logged in successfully!");
         navigate("/");
       })
