@@ -4,7 +4,7 @@ require("./db/conn");
 var cookieParser = require("cookie-parser");
 const adminRoutes = require("./routes/adminRoutes");
 const userRoutes = require("./routes/userRoutes");
-const path = require("path");
+
 require("dotenv").config();
 
 const app = express();
@@ -17,14 +17,12 @@ app.use(
     sameSite: "none",
   })
 );
+app.get("/", (req, res) => {
+  res.json("Backend Started!");
+});
 app.use(cookieParser());
 app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
-
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
 
 const port = process.env.PORT || 5000;
 app.listen(port, (err) => {
