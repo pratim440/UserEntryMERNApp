@@ -8,6 +8,7 @@ const createToken = ({ email, password }) => {
 
 const validateToken = (req, res, next) => {
   const accessToken = req.cookies["accessToken"];
+  console.log(accessToken);
   if (!accessToken) return res.status(400).json("User not Authenticated!");
   try {
     const validToken = verify(accessToken, process.env.JWT_SECRET);
