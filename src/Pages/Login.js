@@ -13,14 +13,14 @@ function Login() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  useEffect(async () => {
-    await axios
-      .get(`${api}/admin/checkAdmin`, config)
-      .then((res) => {
-        navigate("/");
-      })
-      .catch((err) => navigate("/login"));
-  }, []);
+  // useEffect(async () => {
+  //   await axios
+  //     .get(`${api}/admin/checkAdmin`, config)
+  //     .then((res) => {
+  //       navigate("/");
+  //     })
+  //     .catch((err) => navigate("/login"));
+  // }, []);
 
   const onSubmit = async (data) => {
     await axios
