@@ -33,6 +33,7 @@ router.post("/loginAdmin", async (req, res) => {
         const accessToken = createToken(req.body);
         res.cookie("accessToken", accessToken, {
           maxAge: 300000,
+          httpOnly: true,
         });
         res.status(200).json("Logged in successfully!");
       }
