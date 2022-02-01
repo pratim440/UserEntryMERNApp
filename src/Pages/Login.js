@@ -15,7 +15,7 @@ function Login() {
   const navigate = useNavigate();
   useEffect(async () => {
     await axios
-      .get(
+      .post(
         `${api}/admin/checkAdmin`,
         { accessToken: Cookies.get("accessToken") },
         config

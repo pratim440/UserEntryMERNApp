@@ -4,6 +4,7 @@ import TableList from "../Components/TableList";
 import Form from "./../Components/Form";
 import axios from "axios";
 import { api, config } from "./../api";
+import Cookies from "js-cookie";
 
 function Home() {
   const [users, setUsers] = useState([]);
@@ -12,8 +13,13 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(async () => {
+    console.log(Cookies.get("accessToken"));
     await axios
-      .get(`${api}/admin/checkAdmin`, config)
+      .post(
+        `${api}/admin/checkAdmin`,
+        { accessToken: Cookies.get("accessToken") },
+        config
+      )
       .then((res) => {
         console.log("user authenticated");
       })
