@@ -1,5 +1,4 @@
 import React from "react";
-import { data } from "./../data";
 import axios from "axios";
 import { api } from "./../api";
 import { toast } from "react-toastify";
