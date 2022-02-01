@@ -13,21 +13,21 @@ function Login() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  // useEffect(async () => {
-  //   await axios
-  //     .get(`${api}/admin/checkAdmin`, config)
-  //     .then((res) => {
-  //       navigate("/");
-  //     })
-  //     .catch((err) => navigate("/login"));
-  // }, []);
+  useEffect(async () => {
+    await axios
+      .get(`${api}/admin/checkAdmin`, config)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => navigate("/login"));
+  }, []);
 
   const onSubmit = async (data) => {
     await axios
       .post(`${api}/admin/loginAdmin`, data, config)
       .then((res) => {
-        // console.log(res);
-        Cookies.set("from client", res.data.accessToken);
+        console.log(res);
+        Cookies.set("accessToken", res.data.accessToken, { expires: 0.00347 });
         toast.success("Logged in successfully!");
         navigate("/");
       })

@@ -11,14 +11,14 @@ function Home() {
   const [deleteUser, setDeleteUser] = useState([]);
   const navigate = useNavigate();
 
-  // useEffect(async () => {
-  //   await axios
-  //     .get(`${api}/admin/checkAdmin`, config)
-  //     .then((res) => {
-  //       console.log("user authenticated");
-  //     })
-  //     .catch((err) => navigate("/login"));
-  // }, []);
+  useEffect(async () => {
+    await axios
+      .get(`${api}/admin/checkAdmin`, config)
+      .then((res) => {
+        console.log("user authenticated");
+      })
+      .catch((err) => navigate("/login"));
+  }, []);
   useEffect(async () => {
     await axios
       .get(`${api}/user/`)
