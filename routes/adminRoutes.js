@@ -23,7 +23,7 @@ router.post("/newAdmin", async (req, res) => {
     res.status(401).json("failed");
   }
 });
-router.post("/login", async (req, res) => {
+router.post("/loginAdmin", async (req, res) => {
   try {
     const { email, password } = req.body;
     const adminData = await Admin.findOne({ email });

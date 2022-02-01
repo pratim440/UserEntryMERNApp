@@ -18,16 +18,12 @@ app.use(
   })
 );
 app.use(cookieParser());
-
-app.get("/", (req, res) => {
-  res.send("home page");
-});
-app.use("/", adminRoutes);
+app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
 
-app.use(express.static(path.join(__dirname1, "./client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 const port = process.env.PORT || 5000;
