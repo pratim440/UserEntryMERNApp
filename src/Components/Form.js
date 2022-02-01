@@ -13,7 +13,6 @@ function Form({ formData }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     await axios
       .post(`${api}/user/new`, data)
       .then((res) => {
