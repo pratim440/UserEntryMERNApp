@@ -10,12 +10,13 @@ require("dotenv").config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
-const val = {
-  origin: [process.env.FRONTEND_URL],
-  credentials: true,
-  sameSite: "none",
-};
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    credentials: true,
+    sameSite: "none",
+  })
+);
 app.get("/", (req, res) => {
   res.json("Backend Started!");
 });
