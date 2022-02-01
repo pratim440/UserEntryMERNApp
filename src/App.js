@@ -9,8 +9,8 @@ function App() {
     <>
       <ToastContainer autoClose={2500} />
       <Routes>
-        <Route path='/' element={<Home />} />
         <Route exact path='/login' element={<Login />} />
+        <Route path='/' element={<Home />} />
       </Routes>
     </>
   );
